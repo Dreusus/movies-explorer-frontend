@@ -1,0 +1,263 @@
+.header__menu-icon {
+  display: none;
+  position: relative;
+  width: 28px;
+  height: 24px;
+  transition: linear 0.3s;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.header__menu-icon:hover {
+  opacity: 0.6;
+}
+
+.header__menu-icon span,
+.header__menu-icon::before,
+.header__menu-icon::after {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background-color: #000;
+  transition: linear 0.3s;
+}
+
+.header__menu-icon::before,
+.header__menu-icon::after {
+  content: '';
+}
+
+.header__menu-icon::before {
+  top: 0;
+}
+
+.header__menu-icon::after {
+  bottom: 0;
+}
+
+.header__menu-icon span {
+  top: 50%;
+  transform: scale(1) translate(0px, -50%);
+}
+
+.header__menu-icon_active span {
+  top: 50%;
+  transform: scale(0) translate(0px, -50%);
+}
+
+.header__menu-icon_active::before {
+  top: 50%;
+  transform: rotate(-45deg) translate(0px, -50%);
+}
+
+.header__menu-icon_active::after {
+  bottom: 50%;
+  transform: rotate(45deg) translate(0px, 50%);
+}
+
+.header__menu {
+  margin: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.35s ease-in;
+  z-index: 2;
+}
+
+.header__menu-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  max-width: 520px;
+  width: 100%;
+  background-color: #fff;
+  margin: 0 0 0 auto;
+  align-items: center;
+}
+
+.menu-items {
+  padding: 160px 0 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-item {
+  margin-bottom: 28px;
+}
+
+.menu-item-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  padding-bottom: 4px;
+}
+
+.menu-item-link.active {
+  border-bottom: 2px solid #000;
+}
+
+.menu__account-nav {
+  display: flex;
+  padding-bottom: 92px;
+}
+
+.menu__account-button {
+  color:#000;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  height: 30px;
+  background: #f9f9f9;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  padding: 0 7.5px;
+  transition: linear 0.25s;
+}
+
+.menu__account-icon {
+  
+  width: 11.5px;
+  height: 14px;
+}
+
+.header__account-nav {
+  display: none;
+}
+
+.header__account-nav_active {
+  margin: 18px 0 0;
+  display: flex;
+}
+
+.header__account-button {
+  color:#000;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  height: 30px;
+  background: #f9f9f9;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  padding: 0 7.5px;
+  transition: linear 0.25s;
+}
+
+.header__account-button:hover {
+  background: #e8e8e8;
+}
+
+.header__account-icon {
+  
+  width: 11.5px;
+  height: 14px;
+}
+
+.header__movies-nav {
+  display: none;
+}
+
+.header__movies-nav_active {
+  display: block;
+  margin: 28px 0 0 60px;
+}
+
+.header__link-movies {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000000;
+  margin-right: 16px;
+}
+
+.header__link-favourites {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000000;
+}
+
+.header__link-movies.active {
+  font-weight: 500;
+}
+
+.header__link-favourites.active {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .header__movies-nav_active {
+    display: none;
+  }
+
+  .header__account-nav_active {
+    display: none;
+  }
+
+  .header__menu-icon {
+    display: block;
+    margin: 26px 10px 0 0;
+  }
+
+  .header__menu-icon_fixed {
+    position: fixed;
+    top: 0;
+    right: 30px;
+  }
+
+  .header__menu-icon_unactive {
+    display: none;
+  }
+
+  .header__menu_opened {
+    background-color: rgba(0, 0, 0, 0.3);
+    visibility: visible;
+    pointer-events: all;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header__menu-icon {
+    width: 26px;
+    height: 24px;
+  }
+
+  .header__menu-icon_fixed {
+    right: 14px;
+  }
+
+  .menu-items {
+    padding: 145px 0 0;
+  }
+
+  .menu-item {
+    margin-bottom: 24px;
+  }
+
+  .menu__account-nav {
+    padding-bottom: 36px;
+  }
+}

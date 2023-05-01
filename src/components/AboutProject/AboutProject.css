@@ -1,0 +1,138 @@
+.project {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.project__title {
+  display: flex;
+  margin: 110px 70px 23px;
+  padding: 0;
+  list-style: none;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.project__hr-line {
+  margin: 0 70px;
+}
+
+.project-items {
+  display: flex;
+  margin: 0 70px 110px;
+  padding: 0;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.project-item {
+  max-width: 550px;
+  width: 100%;
+}
+
+.project-item__title {
+  margin: 70px 0 26px 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.project-item:first-child {
+  margin-right: 40px;
+}
+
+.project-item__subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.progress-items {
+  display: grid;
+  margin: 0 70px 110px;
+  padding: 0;
+  grid-template-columns: 1fr 4fr;
+  list-style: none;
+}
+
+.progress-item {
+  width: 100%;
+}
+
+.progress-item__weeks {
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+
+}
+
+.progress-item__weeks_theme_dark {
+  background-color: #000000;
+  color: #fff;
+}
+
+.progress-item__subtitle {
+  margin: 14px 0 0;
+  text-align: center;
+  color: #a0a0a0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media screen and (max-width:768px) {
+  .project__title {
+    margin: 90px 50px 23px;
+  }
+
+  .project__hr-line {
+    margin: 0 50px;
+  }
+
+  .project-items {
+    margin: 0 50px 93px;
+  }
+
+  .progress-items {
+    margin: 0 50px 90px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .project__title {
+    margin: 70px 14px 28px;
+  }
+
+  .project__hr-line {
+    margin: 0 18px;
+  }
+
+  .project-items {
+    margin: 0 18px;
+    display: block;
+  }
+
+  .project-item__title {
+    margin: 60px 0 16px;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .progress-items {
+    margin: 60px 18px 70px;
+    grid-template-columns: 2fr 4fr;
+  }
+  .progress-item__weeks {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+
+}
