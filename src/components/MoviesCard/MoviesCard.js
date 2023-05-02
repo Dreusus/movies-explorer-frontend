@@ -9,7 +9,7 @@ function MoviesCard(props) {
     <>
       <li className='movie'>
         <a target="_blank" href='/' rel="noreferrer">
-          <img className="movie__image" alt='пропс.альт' src='http://pm1.narvii.com/8168/8e0362867a9ccdcefbfb7ae66c6b5e44db44019fr1-1920-1080v2_uhq.jpg' />
+          <img className="movie__image" alt='пропс.альт' src='https://get.wallhere.com/photo/Kimetsu-no-Yaiba-Yoriichi-Slayer-anime-boys-simple-background-minimalism-2146273.jpg' />
         </a>
         
         <div className="movie__container">
