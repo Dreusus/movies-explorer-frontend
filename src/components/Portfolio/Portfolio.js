@@ -5,7 +5,7 @@ function Portfolio() {
       <ul className="portfolio-items">
         <li className="portfolio-item">
           <a
-            href="#"
+            href="https://github.com/Dreusus/how-to-learn"
             target="_blank"
             className="portfolio-item__text"
             rel="noreferrer"
@@ -13,7 +13,7 @@ function Portfolio() {
             Статичный сайт
           </a>
           <a
-            href="#"
+            href="https://github.com/Dreusus/how-to-learn"
             target="_blank"
             className="portfolio-item__icon"
             rel="noreferrer"
@@ -22,7 +22,7 @@ function Portfolio() {
         </li>
         <li className="portfolio-item">
           <a
-            href="#"
+            href="https://dreusus.github.io/russian-travel/"
             target="_blank"
             className="portfolio-item__text"
             rel="noreferrer"
@@ -30,7 +30,7 @@ function Portfolio() {
             Адаптивный сайт
           </a>
           <a
-            href="#"
+            href="https://dreusus.github.io/russian-travel/"
             target="_blank"
             className="portfolio-item__icon"
             rel="noreferrer"
@@ -40,7 +40,7 @@ function Portfolio() {
         </li>
         <li className="portfolio-item">
           <a
-            href="#"
+            href="https://dreusus.nomoredomains.work/"
             target="_blank"
             className="portfolio-item__text"
             rel="noreferrer"
@@ -48,7 +48,7 @@ function Portfolio() {
             Одностраничное приложение
           </a>
           <a
-            href="#"
+            href="https://dreusus.nomoredomains.work/"
             target="_blank"
             rel="noreferrer"
             className="portfolio-item__icon"
