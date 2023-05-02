@@ -11,7 +11,7 @@
 
 .movies__container {
   box-sizing: border-box;
-  margin: 70px 70px 0;
+  margin: 70px 70px 80px;
   width: 100%;
   min-height: 540px;
   padding: 0;
@@ -19,7 +19,7 @@
 
 .movies__load-button {
   display: block;
-  margin: 76px auto 30px;
+  margin: 76px auto 0;
   padding: 0;
   max-width: 320px;
   height: 56px;
@@ -45,12 +45,12 @@
 
 @media screen and (max-width: 768px) {
   .movies__container {
-    margin: 70px 30px 0;
+    margin: 70px 30px 80px;
   }
 
  .movies__load-button {
   height: 36px;
-  margin:50px auto 80px;
+  margin:50px auto 0;
  }
 }
 
