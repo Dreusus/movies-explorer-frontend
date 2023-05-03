@@ -67,6 +67,13 @@
 }
 
 
+@media screen and (max-width: 420px) {
+  .portfolio-item__text {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .portfolio {
     margin: 0 auto;
@@ -86,10 +93,7 @@
     line-height: 20px;
   }
 
-  .portfolio-item__text {
-    font-size: 18px;
-    line-height: 28px;
-  }
+
   .portfolio-item__icon {
     margin-top: 7px;
   }

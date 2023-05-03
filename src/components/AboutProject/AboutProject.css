@@ -14,7 +14,7 @@
   line-height: 24px;
 }
 
-.project__hr-line {
+.hr-line {
   margin: 0 70px;
 }
 
@@ -92,7 +92,7 @@
     margin: 90px 50px 23px;
   }
 
-  .project__hr-line {
+  .hr-line {
     margin: 0 50px;
   }
 
@@ -105,12 +105,12 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 420px) {
   .project__title {
     margin: 70px 14px 28px;
   }
 
-  .project__hr-line {
+  .hr-line {
     margin: 0 18px;
   }
 

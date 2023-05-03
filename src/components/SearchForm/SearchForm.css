@@ -26,10 +26,15 @@
   border-radius: 8px;
   cursor: pointer;
   height: 44px;
-  padding: 7px;
-  width: 44px;
+  padding: 0;
+  max-width: 44px;
+  width: 100%;
   margin-left: 10px;
   align-self: center;
+  transition: 0.3s linear;
+}
+.search__button:hover {
+  opacity: 0.5;
 }
 
 .search__input {
