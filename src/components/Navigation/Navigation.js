@@ -61,7 +61,6 @@ function Navigation(props) {
               {' '}
               <NavLink
                 to="/"
-                exact="true"
                 className="active-element menu-item-link"
               >
                 Главная
