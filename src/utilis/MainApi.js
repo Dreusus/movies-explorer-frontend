@@ -58,7 +58,7 @@ class MainApi {
       })
     })
   }
- //сохраненные 
+  //сохраненные 
   getSavedMovies(token) {
     return this._request(`${this._baseUrl}/movies`, {
       method: 'GET',
@@ -106,7 +106,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.dreusus.nomoredomains.monster",
 });
 
 export default mainApi;
