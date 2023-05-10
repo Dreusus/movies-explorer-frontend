@@ -7,6 +7,7 @@ function Register(props) {
   const [isDataChanged, setDataChanged] = React.useState(true);
   const {
     register,
+    handleSubmit,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
@@ -17,16 +18,27 @@ function Register(props) {
     mode: 'onChange',
   });
 
+  function onRegisterSubmit(data) {
+    props.handleRegister({
+      email: data.email,
+      password: data.password,
+      name: data.name,
+    });
+    setDataChanged(true);
+  }
+
   return (
     <Form
       title="Добро пожаловать!"
-      name="register"
       buttonTitle="Зарегистрироваться"
       linkSpan="Уже зарегистрированы?"
+      name="register"
       linkName="Войти"
       path="/signin"
+
       isValid={isValid}
       isDataChanged={isDataChanged}
+      onHandleSubmit={handleSubmit(onRegisterSubmit)}
     >
 
       <div className='form__input-container'>

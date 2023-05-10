@@ -2,29 +2,39 @@ import React from 'react';
 import SearchForm from '../SearchForm/SearchForm.js';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import Footer from '../Footer/Footer.js';
-import Header from '../Header/Header.js';
+import { useState, useEffect } from "react";
 
-function SavedMovies() {
-
-  const [isBurgerMenuOpen, setBurgerMenuOpen] = React.useState(false);       /*   {костыль для верстки)) } */
-  const [loggedIn, setLoggedIn] = React.useState(false);
-
-  function toggleBurgerMenu() {
-    setBurgerMenuOpen(!isBurgerMenuOpen);
-  }
-
+function SavedMovies({
+  cards,
+  searchMovie,
+  handleSave,
+  isPreloaderActive,
+  handleRemove,
+  savedMovies,
+  handlerShortMovies,
+  shortMovies,
+  searchMessage
+}) {
 
   return (
     <>
-    <Header Menu={toggleBurgerMenu} isMenuOpen={isBurgerMenuOpen} loggedIn={!loggedIn} />  {/*  костыль */}
       <section className='section__movies'>
-        <SearchForm />
-        <MoviesCardList 
-        isHidden
+        <SearchForm
+          searchMessage={searchMessage}
+          searchMovie={searchMovie}
+          handlerShortMovies={handlerShortMovies}
+          shortMovies={shortMovies}
+          isPreloaderActive={isPreloaderActive}
+        />
+        <MoviesCardList
+          cards={cards}
+          handleRemove={handleRemove}
+          handleSave={handleSave}
+          savedMovies={savedMovies}
         />
       </section>
-      <Footer/>
-      
+      <Footer />
+
     </>
   )
 

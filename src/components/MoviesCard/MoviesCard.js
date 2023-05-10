@@ -1,33 +1,82 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 
+function MoviesCard({
+  saveSection,
+  card,
+  handleSave,
+  handleRemove,
+  savedMovies
+}) {
 
-function MoviesCard(props) {
   const location = useLocation();
+  const formatDuration = (duration) => {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+    return hours > 0 ? hours + 'ч ' + minutes + 'м' : minutes + 'м'
+  }
+  const formatLink = (link) => {
+    return `https://api.nomoreparties.co/${link}`
+  }
+
+  let link = formatLink(card.image.url)
+  let duration = formatDuration(card.duration)
+
+  const likedMovie = (card) => savedMovies.some(item => item.movieId === card.id);
+  const toggleStateLike = () => likedMovie(card) ? handleRemove(card) : handleSave(card);
+  const deleteMovie = () => handleRemove(card)
 
   return (
     <>
-      <li className='movie'>
-        <a target="_blank" href='/' rel="noreferrer">
-          <img className="movie__image" alt='пропс.альт' src='https://get.wallhere.com/photo/Kimetsu-no-Yaiba-Yoriichi-Slayer-anime-boys-simple-background-minimalism-2146273.jpg' />
-        </a>
-        
-        <div className="movie__container">
-          <div className="movie__info">
-            <div className="movie__title">33 слова о дизайне</div>
-            <button className={`movie__icon 
-            ${location.pathname === '/movies'
-                ? `movie__like ${props.isLiked && 'movie__like_active'}`
-                : 'movie__remove'
-              }`}
-              type="button" />
+      {location.pathname === '/movies' ? (
+        <li className='movie'>
+          <a target="_blank" href={card.trailerLink} rel="noreferrer">
+            <img className="movie__image"
+              alt={card.nameRU}
+              src={link} />
+          </a>
+
+          <div className="movie__container">
+            <div className="movie__info">
+              <div className="movie__title">{card.nameRU}</div>
+              <button
+                className={
+                  likedMovie(card)
+                    ? 'movie__icon movie__like movie__like_active'
+                    : 'movie__icon movie__like'
+                }
+                type="button"
+                onClick={toggleStateLike}
+              />
+            </div>
+            <div className="movie__duration">{duration}</div>
           </div>
-          <div className="movie__duration">1ч42</div>
-        </div>
-      </li>
+        </li>
+      )
+        :
+        (
+          <li className='movie'>
+            <a target="_blank" href={card.trailerLink} rel="noreferrer">
+              <img className="movie__image" alt={card.nameRU} src={card.image} />
+            </a>
+
+            <div className="movie__container">
+              <div className="movie__info">
+                <div className="movie__title">{card.nameRU}</div>
+                <button
+                  className='movie__icon movie__remove'
+                  type="button"
+                  onClick={deleteMovie}
+                />
+              </div>
+              <div className="movie__duration">{duration}</div>
+            </div>
+          </li>
+        )}
+
     </>
   )
 }
+
 
 
 export default MoviesCard;

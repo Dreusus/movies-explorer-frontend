@@ -11,12 +11,12 @@
   color: black;
 }
 
-.active-element:hover {
-  transition: linear 0.25s;
-  opacity: 0.6;
+.active:hover {
+ transition: ease-in-out 0.4s;
+  opacity: 0.5;
 }
 
-.active-element:disabled {
+.active:disabled {
   opacity: 1;
 }
 

@@ -3,10 +3,12 @@ import Form from '../Form/Form.js'
 import { useForm } from 'react-hook-form';
 import { regExEmail } from '../../utilis/regex.js'
 
-function Login() {
+function Login(props) {
   const [isDataChanged, setDataChanged] = React.useState(true);
+
   const {
     register,
+    handleSubmit,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
@@ -16,21 +18,37 @@ function Login() {
     },
     mode: 'onChange',
   });
+
+  function onLoginSubmit(data) {
+    props.handleLogin({
+      email: data.email,
+      password: data.password,
+      name: data.name,
+    });
+    setDataChanged(true)
+  }
+
   return (
     <Form
       title="Рады видеть!"
-      name="login"
-      buttonTitle="Войти"
       linkSpan="Ещё не зарегистрированы?"
       linkName="Регистрация"
+      name="login"
+      buttonTitle="Войти"
       path="/signup"
+
       isValid={isValid}
       isDataChanged={isDataChanged}
+      onHandleSubmit={handleSubmit(onLoginSubmit)}
     >
 
       <div className='form__input-container'>
         <label htmlFor='register-email' className='form__label'>E-mail
-          <input type='email' name='email' id='register-email' className='form__input register__email'
+          <input
+            className='form__input register__email'
+            type='email'
+            name='email'
+            id='register-email'
             {...register('email', {
               required: 'Поле обязательно для заполнения',
               onChange: () => {
@@ -49,7 +67,11 @@ function Login() {
 
       <div className='form__input-container'>
         <label htmlFor='register-password' className='form__label'>Пароль
-          <input type='password' name='password' id='register-password' className="form__input register__password"
+          <input
+            className="form__input register__password"
+            type='password'
+            name='password'
+            id='register-password'
             {...register('password', {
               required: 'Поле обязательно для заполнения',
               onChange: () => {

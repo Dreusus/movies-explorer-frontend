@@ -21,10 +21,10 @@ function Header(props) {
           }`}
         >
           {' '}
-          <Link to="/signup" className="active-element header__link-signup">
+          <Link to="/signup" className="header__link-signup active-element">
             Регистрация
           </Link>
-          <Link to="/signin" className="active-element header__link-signin">
+          <Link to="/signin" className="header__link-signin active-element">
             <p className="header__link-signin__text">Войти</p>
           </Link>
         </div>
