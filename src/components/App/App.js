@@ -108,6 +108,7 @@ function App() {
     history('/')
     setSavedMovies([])
     setFoundMovies([])
+    setUpdatedUser(false)
     localStorage.removeItem('savedMovies')
     localStorage.removeItem('moviesAPI')
     localStorage.removeItem('input')

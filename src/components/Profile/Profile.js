@@ -22,7 +22,7 @@ function Profile({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
   });
@@ -117,11 +117,15 @@ function Profile({
                 Данные обновлены
               </span>
             </div>
-
-
           </form>
           <div className='profile__button-container'>
-            <button className="profile__update-button active-element" type="submit" form="profile">Редактировать </button>
+            <button className="profile__update-button active-element" type="submit" form="profile"
+              disabled={(isCurrentValue.name === currentUser.name && isCurrentValue.email === currentUser.email)
+                || !isValid
+              }
+            >
+              Редактировать
+            </button>
             <button
               className="profile__logout-button active-element"
               type="button"
