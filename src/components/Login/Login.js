@@ -1,10 +1,23 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import Form from '../Form/Form.js'
 import { useForm } from 'react-hook-form';
 import { regExEmail } from '../../utilis/regex.js'
+import { useNavigate } from "react-router-dom";
 
-function Login(props) {
-  const [isDataChanged, setDataChanged] = React.useState(true);
+
+function Login({
+  loggedIn,
+  handleLogin 
+}) {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/')
+    }
+  })
+
+  const [isDataChanged, setDataChanged] = useState(true);
 
   const {
     register,
@@ -19,8 +32,8 @@ function Login(props) {
     mode: 'onChange',
   });
 
-  function onLoginSubmit(data) {
-    props.handleLogin({
+  const  onLoginSubmit = (data) => {
+    handleLogin({
       email: data.email,
       password: data.password,
       name: data.name,

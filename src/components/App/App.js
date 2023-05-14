@@ -15,7 +15,7 @@ import moviesApi from '../../utilis/MoviesApi';
 
 function App() {
   const location = useLocation();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const path = location.pathname;
 
   const [currentUser, setCurrentUser] = useState({});
@@ -40,7 +40,7 @@ function App() {
         localStorage.setItem('token', res.token);
         setToken(res.token);
         setLoggedIn(true);
-        history('/movies');
+        navigate('/movies');
       })
       .catch((err) => {
         console.log(err)
@@ -79,7 +79,7 @@ function App() {
         .then((userData) => {
           setLoggedIn(true);
           setCurrentUser(userData)
-          history(path)
+          navigate(path)
         })
         .catch((err) => {
           console.log(err);
@@ -105,7 +105,7 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setLoggedIn(false);
-    history('/')
+    navigate('/')
     setSavedMovies([])
     setFoundMovies([])
     setUpdatedUser(false)
@@ -252,7 +252,6 @@ function App() {
         <Header Menu={toggleBurgerMenu} isMenuOpen={isBurgerMenuOpen} loggedIn={loggedIn} />
         <Routes>
           <Route exact path='/' element={<Main />} />
-
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path='/movies'
               element={
@@ -286,8 +285,8 @@ function App() {
                 isUpdatedUser={isUpdatedUser}
               />} />
           </Route>
-          <Route path='/signup' element={<Register handleRegister={handleRegister} />} />
-          <Route path='/signin' element={<Login handleLogin={handleLogin} />} />
+          <Route path='/signup' element={<Register loggedIn={loggedIn} handleRegister={handleRegister} />} />
+          <Route path='/signin' element={<Login loggedIn={loggedIn} handleLogin={handleLogin} />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </CurrentUserContext.Provider>
