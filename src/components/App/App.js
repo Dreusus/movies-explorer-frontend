@@ -87,19 +87,12 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      moviesApi
-        .getFilms()
-        .then((movies) => {
+      Promise.all([moviesApi.getFilms(), mainApi.getSavedMovies(token), mainApi.getUserInfo(token)])
+        .then(([movies, savedMovies, userData]) => {
           localStorage.setItem('moviesAPI', JSON.stringify(movies))
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-      mainApi
-        .getSavedMovies(token)
-        .then(data => {
-          setSavedMovies(data)
-          localStorage.setItem('savedMovies', JSON.stringify(data))
+          setSavedMovies(savedMovies)
+          localStorage.setItem('savedMovies', JSON.stringify(savedMovies))
+          setCurrentUser(userData)
         })
         .catch(err => console.log(err))
     }
