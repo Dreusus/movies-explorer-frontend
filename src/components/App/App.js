@@ -27,8 +27,10 @@ function App() {
   const [isShortMovies, setIsShortMovies] = useState(JSON.parse(localStorage.getItem('isShort')) || false)
   const [isShortMoviesSave, setIsShortMoviesSave] = useState(JSON.parse(localStorage.getItem('isShortSave')) || false);
   const [isPreloaderActive, setPreloaderActive] = useState(false);
+  const [isUpdatedUser, setUpdatedUser] = useState(false);
   const [searchMessage, setSearchMessage] = useState(false)
   const localShortMovies = JSON.parse(localStorage.getItem('shortMovies'));
+
 
 
   const handleLogin = (data) => {
@@ -61,6 +63,7 @@ function App() {
       .editUserInfo(data.name, data.email, token)
       .then((res) => {
         setCurrentUser(res);
+        setUpdatedUser(true)
       })
       .catch((err) => {
         console.log(err)
@@ -277,8 +280,9 @@ function App() {
                 />} />
             <Route path='/profile' element={
               <Profile
-                onUpdateUser={handleUpdateUser}
+                handleUpdateUser={handleUpdateUser}
                 handleLogout={handleLogout}
+                isUpdatedUser={isUpdatedUser}
               />} />
           </Route>
           <Route path='/signup' element={<Register handleRegister={handleRegister} />} />

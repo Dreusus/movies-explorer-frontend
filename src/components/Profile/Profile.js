@@ -1,9 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { regExName, regExEmail } from '../../utilis/regex'
 
-function Profile(props) {
+function Profile({
+  handleUpdateUser,
+  handleLogout,
+  isUpdatedUser,
+
+}) {
 
   const currentUser = useContext(CurrentUserContext);
 
@@ -17,13 +22,13 @@ function Profile(props) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     mode: 'onChange',
   });
 
   const onUpdateSubmit = (data) => {
-    props.onUpdateUser({
+    handleUpdateUser({
       name: data.name,
       email: data.email,
     });
@@ -107,14 +112,20 @@ function Profile(props) {
                   {errors.email.message}
                 </span>
               )}
+              <span className={`profile__form-message ${isUpdatedUser && `profile__form-message_active`
+                }`}>
+                Данные обновлены
+              </span>
             </div>
+
+
           </form>
           <div className='profile__button-container'>
             <button className="profile__update-button active-element" type="submit" form="profile">Редактировать </button>
-            <button 
-            className="profile__logout-button active-element" 
-            type="button"
-            onClick = {props.handleLogout}
+            <button
+              className="profile__logout-button active-element"
+              type="button"
+              onClick={handleLogout}
             >Выйти из аккаунта
             </button>
           </div>
