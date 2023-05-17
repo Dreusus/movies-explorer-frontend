@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
-import SavedMovies from '../SavedMovies/SavedMovies.js';
-
 
 function MoviesCardList({
   cards,
   handleSave,
   handleRemove,
   savedMovies,
-
+  
 }) {
   const location = useLocation();
   const path = location.pathname;
+
+
 
   const [routeSaveMovies, setRouteSaveMovies] = useState(false)
   const [moreMovies, setMoreMovies] = useState(0)
@@ -77,6 +77,7 @@ function MoviesCardList({
             handleRemove={handleRemove}
             savedMovies={savedMovies}
             routeSaveMovies={routeSaveMovies}
+        
           />
         })}
       </ul>

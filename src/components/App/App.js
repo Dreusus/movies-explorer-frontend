@@ -24,8 +24,8 @@ function App() {
   const [token, setToken] = useState('');
   const [savedMovies, setSavedMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([])
-  const [isShortMovies, setIsShortMovies] = useState(JSON.parse(localStorage.getItem('isShort')) || false)
-  const [isShortMoviesSave, setIsShortMoviesSave] = useState(JSON.parse(localStorage.getItem('isShortSave')) || false);
+  const [isShortMovies, setIsShortMovies] = useState(false)
+  const [isShortMoviesSave, setIsShortMoviesSave] = useState(false);
   const [isPreloaderActive, setPreloaderActive] = useState(false);
   const [isUpdatedUser, setUpdatedUser] = useState(false);
   const [searchMessage, setSearchMessage] = useState(false)
@@ -124,10 +124,10 @@ function App() {
   }, [])
 
 
-  const handleSaveMovie = (card) => {
+  const handleSave = (card) => {
     mainApi
       .postSaveMovie(card, token)
-      .then(newMovie => {
+      .then((newMovie) => {
         setSavedMovies([newMovie, ...savedMovies]);
         localStorage.setItem('savedMovies', JSON.stringify([newMovie, ...savedMovies]))
       })
@@ -136,7 +136,7 @@ function App() {
       })
   }
 
-  const handleRemoveMovie = (card) => {
+  const handleRemove = (card) => {
     const returnMovie = card._id
       ? card
       : savedMovies.find(i => i.movieId === card.id);
@@ -152,13 +152,12 @@ function App() {
       })
   }
 
-  const handleSearchMovie = (i) => {
 
+  const handleSearchMovie = (i) => {
     setPreloaderActive(true)
     const moviesApi = JSON.parse(localStorage.getItem('moviesAPI'));
     const foundMovies = moviesApi.filter((movie) => movie.nameRU.toLocaleLowerCase().includes(i.toLocaleLowerCase()));
     const shortMovies = foundMovies.filter((movie) => movie.duration <= 40)
-
     localStorage.setItem('shortMovies', JSON.stringify(shortMovies));
     localStorage.setItem('foundMovies', JSON.stringify(foundMovies))
 
@@ -182,53 +181,32 @@ function App() {
 
   const handleSearchMovieSaved = (i) => {
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'))
-    console.log('savedMovies', savedMovies)
-    const foundMovies = savedMovies.filter((movie) => movie.nameRU.toLocaleLowerCase().includes(i.toLocaleLowerCase()))
-    console.log('foundMov', foundMovies)
-    console.log('foundMOvLENGTH', foundMovies.length)
-    const savedShortMovies = foundMovies.filter((movie) => movie.duration <= 40)
-    console.log('savedShort', savedShortMovies)
-    localStorage.setItem('savedShortMovies', JSON.stringify(savedShortMovies))
-    console.log(isShortMoviesSave)
-    if (foundMovies.length === 0) {
-      setSearchMessage('Ничего не найдено')
-      setSavedMovies([])
-    }
+    const foundSaveMovies = savedMovies.filter((movie) => movie.nameRU.toLocaleLowerCase().includes(i.toLocaleLowerCase()))
+    const savedShortMovies = foundSaveMovies.filter((movie) => movie.duration <= 40)
 
-    if (isShortMoviesSave && JSON.parse(localStorage.getItem('savedShortMovies')).length === 0) {
-      setSearchMessage('Ничего не найдено')
-      setSavedMovies([])
-    }
+    localStorage.setItem('savedShortMovies', JSON.stringify(savedShortMovies))
 
     if (isShortMoviesSave) {
       setSavedMovies(savedShortMovies)
-    } else {
-      setSavedMovies(foundMovies);
-    }
-  }
-
-  const toggleBurgerMenu = () => {
-    setBurgerMenuOpen(!isBurgerMenuOpen);
-  }
-
-
-
-  useEffect(() => {
-    if (isShortMovies && localShortMovies) {
-      setFoundMovies(localShortMovies)
-    }
-    else if (localStorage.getItem('foundMovies')) {
-      setFoundMovies(JSON.parse(localStorage.getItem('foundMovies')))
       setSearchMessage('')
     }
 
-    if (JSON.parse(localStorage.getItem('savedMovies'))) {
-      setIsShortMoviesSave(false)
-      setSavedMovies(JSON.parse(localStorage.getItem('savedMovies')))
+    if (!isShortMoviesSave) {
+      setSavedMovies(foundSaveMovies);
       setSearchMessage('')
     }
 
-  }, [location, isShortMovies])
+    if (!isShortMoviesSave && foundSaveMovies.length === 0) {
+      setSearchMessage('Ничего не найдено')
+      setSavedMovies([])
+    } else if (isShortMoviesSave && savedShortMovies.length === 0) {
+      setSearchMessage('Ничего не найдено')
+      setSavedMovies([])
+    }
+
+  }
+
+
 
   const handlerShortMovies = () => {
     if (path === '/movies') {
@@ -244,7 +222,21 @@ function App() {
   }
 
 
+  useEffect(() => {
+    if (isShortMovies && localShortMovies) {
+      setFoundMovies(localShortMovies)
+    }
+    else if (localStorage.getItem('foundMovies')) {
+      setFoundMovies(JSON.parse(localStorage.getItem('foundMovies')))
+      setSearchMessage('')
+    }
+  }, [location, isShortMovies])
 
+
+
+  const toggleBurgerMenu = () => {
+    setBurgerMenuOpen(!isBurgerMenuOpen);
+  }
 
   return (
     <>
@@ -259,24 +251,26 @@ function App() {
                   searchMessage={searchMessage}
                   searchMovie={handleSearchMovie}
                   cards={foundMovies}
+                  handleRemove={handleRemove}
+                  handleSave={handleSave}
                   savedMovies={savedMovies}
-                  handleSave={handleSaveMovie}
-                  handleRemove={handleRemoveMovie}
                   handlerShortMovies={handlerShortMovies}
                   shortMovies={isShortMovies}
                   isPreloaderActive={isPreloaderActive}
+
                 />} />
             <Route path='/saved-movies'
               element={
                 <SavedMovies
                   searchMessage={searchMessage}
-                  cards={savedMovies}
-                  handleRemove={handleRemoveMovie}
-                  handleSave={handleSaveMovie}
                   searchMovie={handleSearchMovieSaved}
+                  cards={savedMovies}
+                  handleRemove={handleRemove}
+                  handleSave={handleSave}
                   savedMovies={savedMovies}
                   handlerShortMovies={handlerShortMovies}
                   isPreloaderActive={isPreloaderActive}
+
                 />} />
             <Route path='/profile' element={
               <Profile

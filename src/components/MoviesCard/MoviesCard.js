@@ -1,11 +1,11 @@
 import { useLocation } from 'react-router-dom';
 
 function MoviesCard({
-  saveSection,
   card,
   handleSave,
   handleRemove,
-  savedMovies
+  savedMovies,
+
 }) {
 
   const location = useLocation();
@@ -21,9 +21,18 @@ function MoviesCard({
   let link = formatLink(card.image.url)
   let duration = formatDuration(card.duration)
 
+  
+  
+
+
+
   const likedMovie = (card) => savedMovies.some(item => item.movieId === card.id);
-  const toggleStateLike = () => likedMovie(card) ? handleRemove(card) : handleSave(card);
-  const deleteMovie = () => handleRemove(card)
+
+  const toggleStateLike = () => {
+    likedMovie(card) ? handleRemove(card) : handleSave(card);
+  }
+
+  const deleteMovie = () => handleRemove(card); 
 
   return (
     <>

@@ -12,7 +12,6 @@ function Movies({
   handleRemove,
   savedMovies,
   handlerShortMovies,
-
   isPreloaderActive,
   searchMessage
 }) {

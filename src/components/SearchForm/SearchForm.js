@@ -15,6 +15,7 @@ function SearchForm({
 
   const [movieInput, setMovieInput]
     = useState(location.pathname === '/movies' ? localStorage.getItem('input') || '' : '')
+    
 
   const inputHandler = (e) => {
     setMovieInput(e.target.value);

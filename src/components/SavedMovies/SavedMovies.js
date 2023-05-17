@@ -2,7 +2,7 @@ import React from 'react';
 import SearchForm from '../SearchForm/SearchForm.js';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import Footer from '../Footer/Footer.js';
-import { useState, useEffect } from "react";
+;
 
 function SavedMovies({
   cards,
