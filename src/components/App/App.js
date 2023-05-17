@@ -144,14 +144,16 @@ function App() {
     mainApi
       .deleteMovie(returnMovie._id, token)
       .then(() => {
-        setSavedMovies(
-          savedMovies.filter(item => item._id !== returnMovie._id)
-        )
+        setSavedMovies(savedMovies.filter(item => item._id !== returnMovie._id))
+        localStorage.setItem('savedMovies', JSON.stringify(savedMovies.filter(item => item._id !== returnMovie._id)));
       })
       .catch(err => {
         console.log(err)
       })
   }
+
+
+
 
 
   const handleSearchMovie = (i) => {
