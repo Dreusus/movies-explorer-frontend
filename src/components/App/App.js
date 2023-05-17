@@ -12,6 +12,7 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage.js'
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js'
 import mainApi from '../../utilis/MainApi.js';
 import moviesApi from '../../utilis/MoviesApi';
+import MOVIE_DURATION from '../../utilis/constants';
 
 function App() {
   const location = useLocation();
@@ -157,7 +158,7 @@ function App() {
     setPreloaderActive(true)
     const moviesApi = JSON.parse(localStorage.getItem('moviesAPI'));
     const foundMovies = moviesApi.filter((movie) => movie.nameRU.toLocaleLowerCase().includes(i.toLocaleLowerCase()));
-    const shortMovies = foundMovies.filter((movie) => movie.duration <= 40)
+    const shortMovies = foundMovies.filter((movie) => movie.duration <= MOVIE_DURATION)
     localStorage.setItem('shortMovies', JSON.stringify(shortMovies));
     localStorage.setItem('foundMovies', JSON.stringify(foundMovies))
 
@@ -182,7 +183,7 @@ function App() {
   const handleSearchMovieSaved = (i) => {
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'))
     const foundSaveMovies = savedMovies.filter((movie) => movie.nameRU.toLocaleLowerCase().includes(i.toLocaleLowerCase()))
-    const savedShortMovies = foundSaveMovies.filter((movie) => movie.duration <= 40)
+    const savedShortMovies = foundSaveMovies.filter((movie) => movie.duration <= MOVIE_DURATION)
 
     localStorage.setItem('savedShortMovies', JSON.stringify(savedShortMovies))
 
