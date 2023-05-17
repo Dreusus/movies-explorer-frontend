@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
+import { X_LARGE_SCREEN, LARGE_SCREEN, MEDIUM_SCREEN, SMALL_SCREEN } from '../../utilis/constants.js';
 
+console.log(X_LARGE_SCREEN)
+console.log(LARGE_SCREEN)
+console.log(MEDIUM_SCREEN)
+console.log(SMALL_SCREEN)
 function MoviesCardList({
   cards,
   handleSave,
   handleRemove,
   savedMovies,
-  
+
 }) {
   const location = useLocation();
   const path = location.pathname;
@@ -25,21 +30,21 @@ function MoviesCardList({
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize)
-    if (innerWidth > 1800) {
-      setCounter(12);
-      setMoreMovies(4);
+    if (innerWidth > X_LARGE_SCREEN.WIDTH) {
+      setCounter(X_LARGE_SCREEN.CARDS);
+      setMoreMovies(X_LARGE_SCREEN.ADD);
     }
-    else if (innerWidth >= 1280) {
-      setCounter(12);
-      setMoreMovies(3);
+    else if (innerWidth >= LARGE_SCREEN.WIDTH) {
+      setCounter(LARGE_SCREEN.CARDS);
+      setMoreMovies(LARGE_SCREEN.ADD);
     }
-    else if (innerWidth >= 760) {
-      setCounter(8);
-      setMoreMovies(2);
+    else if (innerWidth >= MEDIUM_SCREEN.WIDTH) {
+      setCounter(MEDIUM_SCREEN.CARDS);
+      setMoreMovies(MEDIUM_SCREEN.ADD);
     }
-    else if (innerWidth < 480) {
-      setCounter(5);
-      setMoreMovies(1);
+    else if (innerWidth < SMALL_SCREEN.WIDTH) {
+      setCounter(SMALL_SCREEN.CARDS);
+      setMoreMovies(SMALL_SCREEN.ADD);
     }
 
 
@@ -77,7 +82,7 @@ function MoviesCardList({
             handleRemove={handleRemove}
             savedMovies={savedMovies}
             routeSaveMovies={routeSaveMovies}
-        
+
           />
         })}
       </ul>

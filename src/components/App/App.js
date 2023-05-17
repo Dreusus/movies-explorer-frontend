@@ -12,7 +12,7 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage.js'
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js'
 import mainApi from '../../utilis/MainApi.js';
 import moviesApi from '../../utilis/MoviesApi';
-import MOVIE_DURATION from '../../utilis/constants';
+import { MOVIE_DURATION } from '../../utilis/constants';
 
 function App() {
   const location = useLocation();
