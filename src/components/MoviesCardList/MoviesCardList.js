@@ -3,10 +3,6 @@ import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
 import { X_LARGE_SCREEN, LARGE_SCREEN, MEDIUM_SCREEN, SMALL_SCREEN } from '../../utilis/constants.js';
 
-console.log(X_LARGE_SCREEN)
-console.log(LARGE_SCREEN)
-console.log(MEDIUM_SCREEN)
-console.log(SMALL_SCREEN)
 function MoviesCardList({
   cards,
   handleSave,
