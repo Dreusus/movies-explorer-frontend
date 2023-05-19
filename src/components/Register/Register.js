@@ -1,12 +1,25 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import Form from '../Form/Form.js'
 import { useForm } from 'react-hook-form';
 import { regExEmail } from '../../utilis/regex.js'
+import { useNavigate } from "react-router-dom";
 
-function Register(props) {
-  const [isDataChanged, setDataChanged] = React.useState(true);
+function Register({
+  loggedIn,
+  handleRegister
+}) {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/')
+    }
+  })
+
+  const [isDataChanged, setDataChanged] = useState(true);
   const {
     register,
+    handleSubmit,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
@@ -17,16 +30,27 @@ function Register(props) {
     mode: 'onChange',
   });
 
+  const onRegisterSubmit = (data) => {
+    handleRegister({
+      email: data.email,
+      password: data.password,
+      name: data.name,
+    });
+    setDataChanged(true);
+  }
+
   return (
     <Form
       title="Добро пожаловать!"
-      name="register"
       buttonTitle="Зарегистрироваться"
       linkSpan="Уже зарегистрированы?"
+      name="register"
       linkName="Войти"
       path="/signin"
+
       isValid={isValid}
       isDataChanged={isDataChanged}
+      onHandleSubmit={handleSubmit(onRegisterSubmit)}
     >
 
       <div className='form__input-container'>
